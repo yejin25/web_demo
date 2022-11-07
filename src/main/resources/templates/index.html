@@ -4,36 +4,107 @@
 <th:block th:replace="fragments/head :: head"></th:block>
 
 <body>
-<div class="container bg-primary text-white text-center p-3">
-<h1>큰 제목</h1>
-<p>내용 내용</p>
+<div class="container bg-primary text-white text-center p-3 mt-4">
+<h1>Region</h1>
+<p>Latency Map 얼마나 걸릴까나~</p>
 </div>
-<div class="container">
-    <div class="row"> <!-- 이 영역은 콘텐츠 4개를 포함합니다.-->
+<div class="container mt-3">
+    <div class="row mt-2"> <!-- 이 영역은 콘텐츠 4개를 포함합니다.-->
         <!-- col-md-숫자는 콘텐츠영역입니다.  -->
         <div class="col-md-3">
-            아이템
+            아이템 데이터 넣을 생각하니깐
         </div>
         <div class="col-md-3">
-            아이템
+            아이템 너무 귀찮음
         </div>
         <div class="col-md-3">
-            아이템
+            아이템 누가 쿼리 대신해줘서
         </div>
         <div class="col-md-3">
-            아이템
+            아이템 리스트로 리턴해주세요
         </div>
     </div>
-    <div class="card" style="height:800px">
+    <div class="card mt-3" style="height:800px">
         <div id="map"></div>
     </div>
 </div>
 
 <script type="text/javascript">
     var map = new jsVectorMap({
+        selectedRegions: ['CN'],
+        regionStyle: {
+            selected: { fill: '#c79efd' },
+            selectedHover: { fill: 'red' }
+        },
         selector: "#map",
         map: "world",
+        lineStyle: {
+            stroke: "#676767",
+            strokeWidth: 1.5,
+            fill: '#ff5566',
+            fillOpacity: 1,
+            strokeDasharray: '6 3 6', // OR: [6, 2, 6]
+            animation: true, // Enables animation
+        },
+
+        markers: [
+            { name: 'Foo 198ms', coords: [-14.2350, -51.9253] },
+            { name: 'Bar', coords: [35.8617, 104.1954] }
+        ],
+        lines: [{
+            from: 'Foo 198ms',
+            to: 'Bar',
+            style: {
+                stroke: 'red',
+            }
+        }],
+        visualizeData: {
+            scale: ['#eeeeee', '#999999'],
+            values: {
+                EG: 29,
+                US: 100,
+                CA: 190,
+                BR: 75,
+                // ...
+            }
+        },
+        focusOn: {
+            regions: ['CN', 'CA'],
+            animate: true
+            // ...
+        },
+
+        labels: {
+            markers: {
+                // Starting from jsvectormap v1.2 the render function receives
+                // the marker object as a first parameter and index as the second.
+                render(marker, index) {
+                    return marker.name || marker.labelName || 'Not available'
+                }
+            }
+        },
+        series: {
+            markers: [{
+                attribute: "fill",
+                legend: {
+                    title: "Something (marker)",
+                },
+                scale: {
+                    "mScale1": "#ffc371",
+                    "mScale2": "#c79efd",
+                },
+                values: {
+                    // Notice: the key must be a number of the marker.
+                    0: "mScale1",
+                    1: "mScale2",
+                    2: "mScale2"
+                }
+            }]
+        }
+
     });
+
+
 </script>
 
 </body>

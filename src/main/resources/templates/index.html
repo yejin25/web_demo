@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:replace="fragments/head :: head"></th:block>
+
+<body>
+<div class="container bg-primary text-white text-center p-3">
+<h1>큰 제목</h1>
+<p>내용 내용</p>
+</div>
+<div class="container">
+    <div class="row"> <!-- 이 영역은 콘텐츠 4개를 포함합니다.-->
+        <!-- col-md-숫자는 콘텐츠영역입니다.  -->
+        <div class="col-md-3">
+            아이템
+        </div>
+        <div class="col-md-3">
+            아이템
+        </div>
+        <div class="col-md-3">
+            아이템
+        </div>
+        <div class="col-md-3">
+            아이템
+        </div>
+    </div>
+    <div class="card" style="height:800px">
+        <div id="map"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var map = new jsVectorMap({
+        selector: "#map",
+        map: "world",
+    });
+</script>
+
+</body>
+</html>
+
+
+

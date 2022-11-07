@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lagn="en" xmlns:th="http://www.thymeleaf.org">
+<!-- Head -->
+<th:block th:fragment="head">
+    <head>
+        <meta charset="utf-8">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+
+        <title>Demo</title>
+
+        <!-- Custom styles for this template-->
+        <link rel="stylesheet" th:href="@{static/js/jsvectormap/dist/css/jsvectormap.min.css}"/>
+        <link rel="stylesheet" th:href="@{static/bootstrap/css/bootstrap.min.css}">
+
+        <script th:src="@{/static/js/jsvectormap/dist/js/jsvectormap.min.js}"></script>
+        <script th:src="@{/static/js/jsvectormap/dist/maps/world.js}"></script>
+        <script th:src="@{/static/bootstrap/js/bootstrap.bundle.js}"></script>
+    </head>
+</th:block>
+</html>

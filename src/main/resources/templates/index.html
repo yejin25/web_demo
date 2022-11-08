@@ -4,7 +4,7 @@
 <th:block th:replace="fragments/head :: head"></th:block>
 
 <body>
-<div class="container bg-primary text-white text-center p-3 mt-4">
+<div class="container-fluid text-white text-center p-3 mt-4" style="background: #232F3E">
 <h1>Region</h1>
 <p>Latency Map 얼마나 걸릴까나~</p>
 </div>
@@ -24,7 +24,7 @@
             아이템 리스트로 리턴해주세요
         </div>
     </div>
-    <div class="card mt-3" style="height:800px">
+    <div class="card mt-3" style="height:700px">
         <div id="map"></div>
     </div>
 </div>
@@ -33,6 +33,7 @@
     var map = new jsVectorMap({
         selectedRegions: ['CN'],
         regionStyle: {
+            fill: '#7D8998',
             selected: { fill: '#c79efd' },
             selectedHover: { fill: 'red' }
         },
@@ -46,7 +47,7 @@
             strokeDasharray: '6 3 6', // OR: [6, 2, 6]
             animation: true, // Enables animation
         },
-
+        backgroundColor: "#161E2D",
         markers: [
             { name: 'Foo 198ms', coords: [-14.2350, -51.9253] },
             { name: 'Bar', coords: [35.8617, 104.1954] }
@@ -61,10 +62,11 @@
         visualizeData: {
             scale: ['#eeeeee', '#999999'],
             values: {
-                EG: 29,
+                CA: 29,
                 US: 100,
-                CA: 190,
-                BR: 75,
+                SG: 190,
+                JP: 100,
+                GB: 180,
                 // ...
             }
         },

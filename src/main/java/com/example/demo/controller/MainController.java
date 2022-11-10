@@ -16,21 +16,21 @@ public class MainController {
     @RequestMapping("/")
     public ModelAndView indexPage() {
 
-        var regionProvider = DefaultAwsRegionProviderChain.builder().build();
-        var region = regionProvider.getRegion();
+     //   var regionProvider = DefaultAwsRegionProviderChain.builder().build();
+    //    var region = regionProvider.getRegion();
 
-        String currentRegion = region.toString().substring(0, region.toString().length() -1);
+    //    String currentRegion = region.toString().substring(0, region.toString().length() -1);
 
-        RegionMetadata regionMetadata = RegionMetadata.of(Region.of(currentRegion));
+   //     RegionMetadata regionMetadata = RegionMetadata.of(Region.of(currentRegion));
         ModelAndView modelAndView = new ModelAndView("index");
-           // String currentRegion = EC2MetadataUtils.getEC2InstanceRegion();
+            String currentRegion = EC2MetadataUtils.getEC2InstanceRegion();
 
 //            if(currentRegion != null) {
 //                modelAndView.addObject("currentRG",currentRegion);
 //            }
 
-        modelAndView.addObject("currentRG", regionMetadata.description());
-        System.out.println(Region.of(regionMetadata.description()));
+        modelAndView.addObject("currentRG", currentRegion);
+    //    System.out.println(Region.of(regionMetadata.description()));
 
         return modelAndView;
     }

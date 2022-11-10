@@ -32,13 +32,13 @@
 <script th:inline="javascript" type="text/javascript">
     /*<![CDATA[*/
 
-    var region = /*[[${current}]]*/;
+    //  var region = /*[[${current}]]*/;
 
-    if(region == 'ap-northeast-1'){
+    if (region == 'ap-northeast-1') {
         region = 'JP';
     }
 
-
+    var region = 'JP';
     var map = new jsVectorMap({
         selectedRegions: [region],
         regionStyle: {
@@ -59,11 +59,11 @@
         backgroundColor: "#161E2D",
         markers: [
             {name: 'Foo 198ms', coords: [-14.2350, -51.9253]},
-            {name: 'Bar', coords: [35.8617, 104.1954]}
+            {name: region, coords: [37.94, 138.755]}
         ],
         lines: [{
             from: 'Foo 198ms',
-            to: 'Bar',
+            to: region,
             style: {
                 stroke: 'red',
             }
@@ -79,11 +79,11 @@
                 // ...
             }
         },
-        focusOn: {
-            regions: ['CN', 'CA'],
-            animate: true
-            // ...
-        },
+        // focusOn: {
+        //     regions: ['CN', 'CA'],
+        //     animate: true
+        //     // ...
+        // },
 
         labels: {
             markers: {

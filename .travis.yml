@@ -11,6 +11,9 @@ cache:
   directories:
     - $HOME/.m2/
 
+before_install:
+  - sudo mysql -e 'CREATE DATABASE IF NOT EXISTS demo;'
+
 services:
   - mysql
 

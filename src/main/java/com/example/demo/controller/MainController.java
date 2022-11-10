@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.regions.RegionMetadata;
+import software.amazon.awssdk.regions.internal.util.EC2MetadataUtils;
 import software.amazon.awssdk.regions.providers.DefaultAwsRegionProviderChain;
 
 @Controller
@@ -16,10 +19,16 @@ public class MainController {
         var regionProvider = DefaultAwsRegionProviderChain.builder().build();
         var region = regionProvider.getRegion();
 
+   //     RegionMetadata regionMetadata = RegionMetadata.of(region);
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("currentRG", region);
+           // String currentRegion = EC2MetadataUtils.getEC2InstanceRegion();
 
-        System.out.println(region);
+//            if(currentRegion != null) {
+//                modelAndView.addObject("currentRG",currentRegion);
+//            }
+
+        modelAndView.addObject("currentRG", region);
+    //    System.out.println(Region.of(regionMetadata.description()));
 
         return modelAndView;
     }

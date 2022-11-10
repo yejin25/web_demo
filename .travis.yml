@@ -11,10 +11,6 @@ cache:
   directories:
     - $HOME/.m2/
 
-script:
-  - java --version
-  - ./mvnw clean install
-  - ./mvnw test
 
 # CI 실행 완료시 메일로 알람
 notifications:

@@ -19,7 +19,9 @@ public class MainController {
         var regionProvider = DefaultAwsRegionProviderChain.builder().build();
         var region = regionProvider.getRegion();
 
-   //     RegionMetadata regionMetadata = RegionMetadata.of(region);
+        String currentRegion = region.toString().substring(0, region.toString().length() -1);
+
+        RegionMetadata regionMetadata = RegionMetadata.of(Region.of(currentRegion));
         ModelAndView modelAndView = new ModelAndView("index");
            // String currentRegion = EC2MetadataUtils.getEC2InstanceRegion();
 
@@ -27,8 +29,8 @@ public class MainController {
 //                modelAndView.addObject("currentRG",currentRegion);
 //            }
 
-        modelAndView.addObject("currentRG", region);
-    //    System.out.println(Region.of(regionMetadata.description()));
+        modelAndView.addObject("currentRG", regionMetadata.description());
+        System.out.println(Region.of(regionMetadata.description()));
 
         return modelAndView;
     }

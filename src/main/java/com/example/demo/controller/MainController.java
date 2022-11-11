@@ -23,17 +23,14 @@ public class MainController {
 
         //     RegionMetadata regionMetadata = RegionMetadata.of(Region.of(currentRegion));
         ModelAndView modelAndView = new ModelAndView("index");
-      //  String region = EC2MetadataUtils.getEC2InstanceRegion();
+        String region = EC2MetadataUtils.getEC2InstanceRegion();
 
-       // RegionMetadata regionMetadata = RegionMetadata.of(Region.of(region));
+        RegionMetadata regionMetadata = RegionMetadata.of(Region.of(region));
 
-//            if(currentRegion != null) {
-//                modelAndView.addObject("currentRG",currentRegion);
-//            }
 
-     //   modelAndView.addObject("currentRG", regionMetadata.description());
-      //  modelAndView.addObject("current", region);
-        //    System.out.println(Region.of(regionMetadata.description()));
+        modelAndView.addObject("currentRG", regionMetadata.description());
+        modelAndView.addObject("current", region);
+
 
         return modelAndView;
     }

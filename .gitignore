@@ -6,6 +6,7 @@ target/
 
 ### Spingboot ###
 .properties
+application-aws.properties
 
 ### STS ###
 .apt_generated

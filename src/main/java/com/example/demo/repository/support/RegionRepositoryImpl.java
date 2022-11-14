@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Map;
 
 public class RegionRepositoryImpl extends QuerydslRepositorySupport implements CustomRegionRepository {
-    private final QRegion region = QRegion.region;
 
     public RegionRepositoryImpl(){
         super(Region.class);
     }
+    private final QRegion region = QRegion.region;
 
     @Override
     public List<MarkerDTO> findValueForMarker() {

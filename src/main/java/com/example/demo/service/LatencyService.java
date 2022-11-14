@@ -13,13 +13,4 @@ import javax.transaction.Transactional;
 public class LatencyService {
     @NonNull
     private final LatencyRepository latencyRepository;
-
-    public float findLatencyByRegion(String region){
-        return latencyRepository.findByRegion(region);
-    }
-
-    @Transactional
-    public Latency save(Latency latency){
-        return latencyRepository.save(latency);
-    }
 }

@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.DTO.MarkerDTO;
-import com.example.demo.enumerate.Coordinate;
 import com.example.demo.enumerate.RegionCode;
 import com.example.demo.service.RegionService;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +12,7 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.regions.RegionMetadata;
 import software.amazon.awssdk.regions.internal.util.EC2MetadataUtils;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +20,7 @@ import java.util.regex.Pattern;
 @RequiredArgsConstructor
 public class MainController {
 
+    @NonNull
     private final RegionService regionService;
 
     @RequestMapping("/")
@@ -31,7 +30,6 @@ public class MainController {
         String regionName = ""; // ex) Asia Pacific (Tokyo)
         String regionCode = "";
 
-        List<Double> coordinateList = new ArrayList<>();
         List<MarkerDTO> markerList = regionService.findValueForMarker();
 
 
@@ -50,9 +48,6 @@ public class MainController {
 
         List<String> anotherRegion = regionService.findRGWithoutCurrentRG(regionName);
         List<String> allRegion = regionService.findAllRegionName();
-
-        coordinateList.add(Coordinate.valueOf(regionCode).getLatitude());   //위도
-        coordinateList.add(Coordinate.valueOf(regionCode).getLongitude());  //경도
 
         model.addAttribute("currentRegion", regionMetadata.description());
         model.addAttribute("markerList", markerList);

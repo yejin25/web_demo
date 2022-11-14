@@ -5,7 +5,7 @@
 
 <body>
 <div class="container-fluid text-white text-center p-3 mt-4" style="background: #232F3E">
-    <h1 th:text="${#strings.defaultString(currentRG, '리전 못찾음 코드 다시 작성')}"></h1>
+    <h1 th:text="${#strings.defaultString(currentRegion, '리전 못찾음 코드 다시 작성')}"></h1>
     <p>Latency Map 얼마나 걸릴까나~</p>
 </div>
 <div class="container mt-3">
@@ -32,24 +32,35 @@
 <script th:inline="javascript" type="text/javascript">
     /*<![CDATA[*/
 
-    //  var region = /*[[${current}]]*/;
+    var regionCode = /*[[${regionCode}]]*/;
+    var regionName = /*[[${regionName}]]*/;
+    var markerList = /*[[${markerList}]]*/;
+    var anotherRegionList = /*[[${regionForLine}]]*/;
 
-    if (region == 'ap-northeast-1') {
-        region = 'JP';
-    }
+    var lineOption;
+    var line = [];
 
-    var region = 'JP';
+    anotherRegionList.forEach((element) => {
+        lineOption = {
+            from: element,
+            to: regionName,
+        };
+        line.push(lineOption);
+    });
+
+    console.log(lineOption)
+
     var map = new jsVectorMap({
-        selectedRegions: [region],
+        selectedRegions: [regionCode],
         regionStyle: {
             fill: '#7D8998',
-            selected: {fill: '#c79efd'},
+            selected: {fill: '#FFE359'},
             selectedHover: {fill: 'red'}
         },
         selector: "#map",
         map: "world",
         lineStyle: {
-            stroke: "#676767",
+            stroke: "#ff5566",
             strokeWidth: 1.5,
             fill: '#ff5566',
             fillOpacity: 1,
@@ -57,17 +68,8 @@
             animation: true, // Enables animation
         },
         backgroundColor: "#161E2D",
-        markers: [
-            {name: 'Foo 198ms', coords: [-14.2350, -51.9253]},
-            {name: region, coords: [37.94, 138.755]}
-        ],
-        lines: [{
-            from: 'Foo 198ms',
-            to: region,
-            style: {
-                stroke: 'red',
-            }
-        }],
+        markers: markerList,
+        lines: line,
         visualizeData: {
             scale: ['#eeeeee', '#999999'],
             values: {
@@ -103,12 +105,17 @@
                 scale: {
                     "mScale1": "#ffc371",
                     "mScale2": "#c79efd",
+                    "mScale3": "#F08080",
+                    "mScale4": "#20B2AA",
+                    "mScale5": "#6495ED"
                 },
                 values: {
                     // Notice: the key must be a number of the marker.
                     0: "mScale1",
                     1: "mScale2",
-                    2: "mScale2"
+                    2: "mScale3",
+                    3: "mScale4",
+                    4: "mScale5"
                 }
             }]
         }

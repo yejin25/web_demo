@@ -49,7 +49,7 @@ public class MainController {
         }
 
         List<String> anotherRegion = regionService.findRGWithoutCurrentRG(regionName);
-
+        List<String> allRegion = regionService.findAllRegionName();
 
         coordinateList.add(Coordinate.valueOf(regionCode).getLatitude());   //위도
         coordinateList.add(Coordinate.valueOf(regionCode).getLongitude());  //경도
@@ -57,7 +57,7 @@ public class MainController {
         model.addAttribute("currentRegion", regionMetadata.description());
         model.addAttribute("markerList", markerList);
         model.addAttribute("regionForLine", anotherRegion);
-
+        model.addAttribute("allRegion", allRegion);
 
         return "index";
     }

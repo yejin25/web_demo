@@ -11,4 +11,6 @@ public interface CustomRegionRepository {
     List<MarkerDTO> findValueForMarker();
 
     List<String> findRGWithoutCurrentRG(String regionName);
+
+    List<String> findAllRegionName();
 }

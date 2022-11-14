@@ -6,22 +6,22 @@
 <body>
 <div class="container-fluid text-white text-center p-3 mt-4" style="background: #232F3E">
     <h1 th:text="${#strings.defaultString(currentRegion, '리전 못찾음 코드 다시 작성')}"></h1>
-    <p>Latency Map 얼마나 걸릴까나~</p>
+    <p>Global Network Map</p>
 </div>
 <div class="container mt-3">
     <div class="row mt-2"> <!-- 이 영역은 콘텐츠 4개를 포함합니다.-->
         <!-- col-md-숫자는 콘텐츠영역입니다.  -->
         <div class="col-md-3">
-            아이템 데이터 넣을 생각하니깐
+            총 5개의 Region이
         </div>
         <div class="col-md-3">
-            아이템 너무 귀찮음
+            TGW 로 연결되어 있음
         </div>
         <div class="col-md-3">
-            아이템 누가 쿼리 대신해줘서
+            Tokyo가 main Region 이고,
         </div>
         <div class="col-md-3">
-            아이템 리스트로 리턴해주세요
+            Oregon 엔 DB를 두었음!
         </div>
     </div>
     <div class="card mt-3" style="height:700px">
@@ -36,17 +36,28 @@
     var regionName = /*[[${regionName}]]*/;
     var markerList = /*[[${markerList}]]*/;
     var anotherRegionList = /*[[${regionForLine}]]*/;
+    var allRegionList = /*[[${allRegion}]]*/;
+
+    var valueOption = new Object();
+    var scaleOption = new Object();
 
     var lineOption;
     var line = [];
+    var color = ["#ffc371", "#c79efd", "#F08080", "#20B2AA", "#6495ED"];
 
-    anotherRegionList.forEach((element) => {
+    anotherRegionList.forEach((element, index) => {
         lineOption = {
             from: element,
             to: regionName,
         };
         line.push(lineOption);
     });
+
+    allRegionList.forEach((element, index) => {
+        scaleOption[element] = color[index];
+        valueOption[index] = element;
+    });
+
 
     console.log(lineOption)
 
@@ -55,7 +66,7 @@
         regionStyle: {
             fill: '#7D8998',
             selected: {fill: '#FFE359'},
-            selectedHover: {fill: 'red'}
+            selectedHover: {fill: '#ff5566'}
         },
         selector: "#map",
         map: "world",
@@ -76,8 +87,8 @@
                 CA: 29,
                 US: 100,
                 SG: 190,
-                JP: 100,
-                GB: 180,
+                JP: 160,
+                GB: 75,
                 // ...
             }
         },
@@ -86,7 +97,6 @@
         //     animate: true
         //     // ...
         // },
-
         labels: {
             markers: {
                 // Starting from jsvectormap v1.2 the render function receives
@@ -100,23 +110,10 @@
             markers: [{
                 attribute: "fill",
                 legend: {
-                    title: "Something (marker)",
+                    title: "Region (Markers)",
                 },
-                scale: {
-                    "mScale1": "#ffc371",
-                    "mScale2": "#c79efd",
-                    "mScale3": "#F08080",
-                    "mScale4": "#20B2AA",
-                    "mScale5": "#6495ED"
-                },
-                values: {
-                    // Notice: the key must be a number of the marker.
-                    0: "mScale1",
-                    1: "mScale2",
-                    2: "mScale3",
-                    3: "mScale4",
-                    4: "mScale5"
-                }
+                scale: scaleOption,
+                values: valueOption
             }]
         }
 

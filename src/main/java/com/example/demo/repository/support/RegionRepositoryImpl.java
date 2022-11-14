@@ -27,5 +27,10 @@ public class RegionRepositoryImpl extends QuerydslRepositorySupport implements C
         return from(region).select(region.name).where(region.name.notIn(regionName)).fetch();
     }
 
+    @Override
+    public List<String> findAllRegionName() {
+        return from(region).select(region.name).fetch();
+    }
+
 
 }

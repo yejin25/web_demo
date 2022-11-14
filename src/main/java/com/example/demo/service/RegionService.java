@@ -23,4 +23,6 @@ public class RegionService {
     }
 
     public List<String> findRGWithoutCurrentRG(String regionName) {return regionRepository.findRGWithoutCurrentRG(regionName);}
+
+    public List<String> findAllRegionName(){ return regionRepository.findAllRegionName();}
 }
